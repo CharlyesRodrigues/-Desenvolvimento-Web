@@ -1,17 +1,13 @@
 import React from 'react'
 
-
+import { Card,CardContent } from '@mui/material';
 const CategoryList = (props) => {
   return (
-    <div>
-        
-        {props.texto}
-    
-    
-    
-    
-    
-    </div>
+    <Card>
+      <CardContent>
+        <div style={{ fontSize: "1rem" }}>{props.texto}</div>
+      </CardContent>
+    </Card>
   )
 }
 

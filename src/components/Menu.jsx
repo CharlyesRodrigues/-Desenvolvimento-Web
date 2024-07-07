@@ -17,7 +17,15 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+
 import MailIcon from '@mui/icons-material/Mail';
+
+import ProductRegister from "./ProductRegister"
+import { Container } from "@mui/material"
+import CategoryList from "./CategoryList"
+import CategoryRegister from "./CategoryRegister"
+import ProductList from './ProductList';
+import { useState } from 'react';
 
 const drawerWidth = 240;
 
@@ -66,9 +74,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft() {
+export default function Menu() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [visivel, setVisivel] = useState(1)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -77,6 +86,32 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // Seletor criado os outros vieram com a biblioteca
+  function seletorDeComponente() {
+
+    if (visivel === 1) {
+      return <ProductRegister
+        texto="Cadastro de Produtos"
+
+      />
+    } else if (visivel === 2) {
+      return <ProductList
+        texto="Listagem de Produtos"
+
+      />
+    } else if (visivel === 3) {
+      return <CategoryRegister
+        texto="Cadastro de Categorias"
+
+      />
+    } else {
+      return <CategoryList texto="Listagem de Categorias" />
+    }
+
+
+  }
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -90,10 +125,11 @@ export default function PersistentDrawerLeft() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
+         
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Cadastro de Produtos
+            Gerenciador de Produtos
           </Typography>
         </Toolbar>
       </AppBar>
@@ -117,39 +153,51 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem onClick={() => { setVisivel(1) }} key={1} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Cadastro de produtos"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem onClick={() => { setVisivel(2) }} key={2} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Listagem de produtos"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem onClick={() => { setVisivel(3) }} key={3} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Cadastro de categorias"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem onClick={() => { setVisivel(4) }} key={4} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Listagem de categorias"} />
+            </ListItemButton>
+          </ListItem>
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Typography paragraph>
-         
-        </Typography>
-        <Typography paragraph>
-         
-        </Typography>
+
+
+        <Container >   
+          {seletorDeComponente()}
+        </Container>
       </Main>
     </Box>
   );
