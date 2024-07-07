@@ -26,6 +26,7 @@ import CategoryList from "./CategoryList"
 import CategoryRegister from "./CategoryRegister"
 import ProductList from './ProductList';
 import { useState } from 'react';
+import { AppRegistration, Category, Fingerprint, Inventory, ListAlt } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -156,7 +157,7 @@ export default function Menu() {
           <ListItem onClick={() => { setVisivel(1) }} key={1} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <InboxIcon />
+                <AppRegistration />
               </ListItemIcon>
               <ListItemText primary={"Cadastro de produtos"} />
             </ListItemButton>
@@ -165,7 +166,7 @@ export default function Menu() {
           <ListItem onClick={() => { setVisivel(2) }} key={2} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <InboxIcon />
+              <Inventory />
               </ListItemIcon>
               <ListItemText primary={"Listagem de produtos"} />
             </ListItemButton>
@@ -174,7 +175,7 @@ export default function Menu() {
           <ListItem onClick={() => { setVisivel(3) }} key={3} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <InboxIcon />
+                <Category />
               </ListItemIcon>
               <ListItemText primary={"Cadastro de categorias"} />
             </ListItemButton>
@@ -183,7 +184,7 @@ export default function Menu() {
           <ListItem onClick={() => { setVisivel(4) }} key={4} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <InboxIcon />
+               <ListAlt />
               </ListItemIcon>
               <ListItemText primary={"Listagem de categorias"} />
             </ListItemButton>
